@@ -28,6 +28,7 @@ public class ReaderActivity extends AppCompatActivity {
     private BarcodeDetector barcodeDetector;
 
     private static boolean barcodeDetected = false;
+    //  TestBranch comment
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
