@@ -4,13 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 
 public class MainActivity extends AppCompatActivity {
 
-    private FrameLayout flGeraete;
-    private FrameLayout flEinstellungen;
-    private FrameLayout flEinlesen;
+    private RelativeLayout flGeraete;
+    private RelativeLayout flEinstellungen;
+    private RelativeLayout flEinlesen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,9 +18,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        flGeraete = (FrameLayout)findViewById(R.id.flGeraete);
-        flEinstellungen = (FrameLayout)findViewById(R.id.flEinstellungen);
-        flEinlesen = (FrameLayout)findViewById(R.id.flEinlesen);
+        flGeraete = (RelativeLayout) findViewById(R.id.flGeraete);
+        flEinstellungen = (RelativeLayout) findViewById(R.id.flEinstellungen);
+        flEinlesen = (RelativeLayout) findViewById(R.id.flEinlesen);
 
         flEinlesen.setOnClickListener(new View.OnClickListener() {
             @Override
