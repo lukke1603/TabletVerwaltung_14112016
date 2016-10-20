@@ -1,129 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="0dp"
-    tools:context="leila.tabletverwaltung.MainActivity">
+    android:background="@drawable/background_gradient">
 
     <LinearLayout
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        tools:context="leila.tabletverwaltung.MainActivity">
+        android:layout_height="match_parent"
+        android:layout_marginTop="200dp"
+        android:layout_marginBottom="100dp"
+        android:baselineAligned="false">
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:baselineAligned="false"
-            android:layout_gravity="center_horizontal">
-
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="100dp"
-                android:id="@+id/flEinlesen"
-                android:padding="10dp"
-                android:layout_weight="0.5"
-                android:layout_margin="10dp"
-                android:background="@color/buttons">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="@string/tvEinlesen"
-                    android:id="@+id/tvEinlesen"
-                    android:layout_gravity="center"
-                    android:textColor="@color/buttonTextColor"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:textSize="16dp"
-                    android:visibility="visible" />
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:id="@+id/ivEinlesen"
-                    android:src="@drawable/ic_einlesen"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:visibility="visible" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="100dp"
-                android:id="@+id/flGeraete"
-                android:padding="10dp"
-                android:layout_margin="10dp"
-                android:background="@color/buttons">
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:id="@+id/ivGeraete"
-                    android:src="@drawable/ic_geraete"
-                    android:layout_gravity="top|center_horizontal"
-                    android:padding="0dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignLeft="@+id/tvGeraete"
-                    android:layout_alignStart="@+id/tvGeraete" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="@string/tvGeraete"
-                    android:id="@+id/tvGeraete"
-                    android:layout_gravity="center"
-                    android:textColor="@color/buttonTextColor"
-                    android:layout_below="@+id/ivGeraete"
-                    android:layout_centerHorizontal="true"
-                    android:textSize="16dp" />
-
-            </RelativeLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center">
+            android:layout_weight="0.5"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
+            android:id="@+id/rlEinlesen">
 
-            <RelativeLayout
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:id="@+id/ivEinlesen"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_einlesen"
+                android:layout_marginBottom="40dp"
+                android:contentDescription="Camera Image"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/main_button" />
+
+            <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="100dp"
-                android:id="@+id/flEinstellungen"
-                android:background="@color/buttons"
-                android:layout_margin="10dp"
-                android:padding="10dp">
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/tvEinlesen"
+                android:id="@+id/tvEinlesen"
+                android:textColor="@color/buttonTextColor"
+                android:textStyle="bold"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="85dp"
+                android:textSize="18dp" />
+        </RelativeLayout>
 
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:id="@+id/ivEinstellungen"
-                    android:src="@drawable/ic_einstellungen"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
+            android:id="@+id/rlGeraete" >
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="@string/tvEinstellungen"
-                    android:id="@+id/tvEinstellungen"
-                    android:layout_gravity="bottom|center_horizontal"
-                    android:textColor="@color/buttonTextColor"
-                    android:gravity="bottom"
-                    android:layout_below="@+id/ivEinstellungen"
-                    android:layout_centerHorizontal="true"
-                    android:textSize="16dp" />
-            </RelativeLayout>
-        </LinearLayout>
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:id="@+id/ivGeraete"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_geraete"
+                android:layout_marginBottom="40dp"
+                android:contentDescription="Camera Image"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/main_button" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/tvGeraete"
+                android:id="@+id/tvGeraete"
+                android:textColor="@color/buttonTextColor"
+                android:textStyle="bold"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="85dp"
+                android:textSize="18dp" />
+        </RelativeLayout>
     </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="42dp"
+        android:padding="30dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/tvLehrer"
+            android:id="@+id/tvLehrer"
+            android:textColor="@color/buttonTextColor"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="false"
+            android:textSize="14dp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/sLehrer"
+            android:spinnerMode="dropdown"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignStart="@id/tvLehrer"
+            android:layout_marginTop="20dp" />
+    </RelativeLayout>
 </RelativeLayout>

@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">TabletVerwaltung</string>
     <string name="tvEinlesen">Gerät scannen</string>
-    <string name="tvGeraete">Geräte</string>
+    <string name="tvGeraete">Geräteübersicht</string>
     <string name="tvEinstellungen">Einstellungen</string>
+    <string name="tvLehrer">Lehrkraft</string>
 </resources>
