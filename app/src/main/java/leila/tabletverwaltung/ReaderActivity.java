@@ -1,9 +1,9 @@
 package leila.tabletverwaltung;
 
 import android.hardware.Camera;
+import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.SurfaceHolder;
@@ -40,6 +40,59 @@ public class ReaderActivity extends AppCompatActivity {
         tvBarcodeResult = (TextView)findViewById(R.id.tvBarcodeResult);
         ivBorder = (ImageView)findViewById(R.id.ivBorder);
         cameraView = (SurfaceView)findViewById(R.id.camera_view);
+
+        initCamera();
+    }
+
+
+
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.e("ACTION", "STOP");
+        cameraSource.stop();
+    }
+
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.e("ACTION", "RESTART");
+        initCamera();
+    }
+
+
+
+    private static boolean cameraFocus(CameraSource cameraSource, String focusMode) {
+        Field[] declaredFields = CameraSource.class.getDeclaredFields();
+
+        for (Field field : declaredFields) {
+            if (field.getType() == Camera.class) {
+                field.setAccessible(true);
+                try {
+                    Camera camera = (Camera) field.get(cameraSource);
+                    if (camera != null) {
+                        Camera.Parameters params = camera.getParameters();
+                        params.setFocusMode(focusMode);
+                        camera.setParameters(params);
+                        return true;
+                    }
+
+                    return false;
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+
+                break;
+            }
+        }
+
+        return false;
+    }
+
+
+    private void initCamera(){
         cameraView.getHolder().addCallback(new SurfaceHolder.Callback() {
             @Override
             public void surfaceCreated(SurfaceHolder holder) {
@@ -95,56 +148,5 @@ public class ReaderActivity extends AppCompatActivity {
                 cameraSource.stop();
             }
         });
-    }
-
-
-
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.e("ACTION", "STOP");
-        cameraSource.stop();
-    }
-
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        Log.e("ACTION", "RESTART");
-        try {
-            cameraSource.start(cameraView.getHolder());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-
-    private static boolean cameraFocus(CameraSource cameraSource, String focusMode) {
-        Field[] declaredFields = CameraSource.class.getDeclaredFields();
-
-        for (Field field : declaredFields) {
-            if (field.getType() == Camera.class) {
-                field.setAccessible(true);
-                try {
-                    Camera camera = (Camera) field.get(cameraSource);
-                    if (camera != null) {
-                        Camera.Parameters params = camera.getParameters();
-                        params.setFocusMode(focusMode);
-                        camera.setParameters(params);
-                        return true;
-                    }
-
-                    return false;
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                }
-
-                break;
-            }
-        }
-
-        return false;
     }
 }
