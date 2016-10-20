@@ -1,6 +1,7 @@
 package leila.tabletverwaltung;
 
 import android.hardware.Camera;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +12,9 @@ import android.view.SurfaceView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
@@ -28,30 +32,51 @@ public class ReaderActivity extends AppCompatActivity {
     private BarcodeDetector barcodeDetector;
 
     private static boolean barcodeDetected = false;
-    //  TestBranch comment
-    //  Test2
-    //  Test2.1
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_reader);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        tvBarcodeResult = (TextView)findViewById(R.id.tvBarcodeResult);
-        ivBorder = (ImageView)findViewById(R.id.ivBorder);
-        cameraView = (SurfaceView)findViewById(R.id.camera_view);
+        tvBarcodeResult = (TextView) findViewById(R.id.tvBarcodeResult);
+        ivBorder = (ImageView) findViewById(R.id.ivBorder);
+        cameraView = (SurfaceView) findViewById(R.id.camera_view);
 
         initCamera();
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
-
-
 
 
     @Override
     protected void onStop() {
         super.onStop();
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "Reader Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app URL is correct.
+                Uri.parse("android-app://leila.tabletverwaltung/http/host/path")
+        );
+        AppIndex.AppIndexApi.end(client, viewAction);
         Log.e("ACTION", "STOP");
         cameraSource.stop();
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client.disconnect();
     }
 
 
@@ -61,7 +86,6 @@ public class ReaderActivity extends AppCompatActivity {
         Log.e("ACTION", "RESTART");
         initCamera();
     }
-
 
 
     private static boolean cameraFocus(CameraSource cameraSource, String focusMode) {
@@ -92,13 +116,13 @@ public class ReaderActivity extends AppCompatActivity {
     }
 
 
-    private void initCamera(){
+    private void initCamera() {
         cameraView.getHolder().addCallback(new SurfaceHolder.Callback() {
             @Override
             public void surfaceCreated(SurfaceHolder holder) {
                 try {
                     barcodeDetector = new BarcodeDetector.Builder(ReaderActivity.this).setBarcodeFormats(
-                            Barcode.QR_CODE | Barcode.DATA_MATRIX | Barcode.EAN_8 | Barcode.EAN_13 | Barcode.UPC_A | Barcode.UPC_E |Barcode.CODE_128 | Barcode.ITF | Barcode.CODE_39
+                            Barcode.QR_CODE | Barcode.DATA_MATRIX | Barcode.EAN_8 | Barcode.EAN_13 | Barcode.UPC_A | Barcode.UPC_E | Barcode.CODE_128 | Barcode.ITF | Barcode.CODE_39
                     ).build();
                     cameraSource = new CameraSource.Builder(ReaderActivity.this, barcodeDetector).setRequestedPreviewSize(cameraView.getWidth(), cameraView.getHeight()).build();
 
@@ -110,11 +134,11 @@ public class ReaderActivity extends AppCompatActivity {
 
                         @Override
                         public void receiveDetections(Detector.Detections<Barcode> detections) {
-                            if(barcodeDetected) return;
+                            if (barcodeDetected) return;
                             final SparseArray<Barcode> barcodes = detections.getDetectedItems();
 
                             //  Barcode wurde erkannt
-                            if(barcodes.size() != 0){
+                            if (barcodes.size() != 0) {
                                 Log.e("BARCODE", barcodes.valueAt(0).displayValue);
 
                                 barcodeDetected = true;
@@ -123,7 +147,7 @@ public class ReaderActivity extends AppCompatActivity {
                                     public void run() {
                                         tvBarcodeResult.setText(barcodes.valueAt(0).displayValue);
                                         ivBorder.setImageResource(R.drawable.barcode_border_box_green);
-                                        Vibrator v = (Vibrator)ReaderActivity.this.getSystemService(VIBRATOR_SERVICE);
+                                        Vibrator v = (Vibrator) ReaderActivity.this.getSystemService(VIBRATOR_SERVICE);
                                         v.vibrate(500);
                                     }
                                 });
@@ -148,5 +172,25 @@ public class ReaderActivity extends AppCompatActivity {
                 cameraSource.stop();
             }
         });
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client.connect();
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "Reader Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app URL is correct.
+                Uri.parse("android-app://leila.tabletverwaltung/http/host/path")
+        );
+        AppIndex.AppIndexApi.start(client, viewAction);
     }
 }
